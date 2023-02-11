@@ -1,0 +1,7 @@
+- Objective: Software should be Flexible, Reusable, Maintainable
+
+- Software architect is a distinct role from software developer
+    - Turn the demands of a customer into working code that is scalable and fits into a larger system
+    - Software design vs architecting is the same problem, but applied at different scales
+    - Trade off between speed and quality
+

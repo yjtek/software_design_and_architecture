@@ -1,0 +1,19 @@
+- You need to balance trade offs when designing objects
+
+- Let's suppose you want to design a door for a house. 
+    - User story: As a homeowner, I want the door to be secure, so I can feel safe in my own house
+    - So, I add a lock. 
+    - What if I don't feel safe enough? 
+    - I can add another lock, but that creates more lag time in locking and unlocking my door.
+
+- Context matters
+    - Designing a door for a high crime area is not the safe as designing a door for an average neighbourhood
+
+- Unintended consequences can manifest, so talk to other teams
+    - e.g. Adding steel bars to windows makes a house safer, but also reduces safety if there is a fire
+
+- Functional and non-functional requirements are both important
+    - Functional: A door must offer security such that only the owner of the house is allowed to enter (e.g. with a lock)
+    - Non functional: A door must not exceed 10KG so it will not be too heavy to open
+
+- 

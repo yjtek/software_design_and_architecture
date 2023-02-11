@@ -1,0 +1,12 @@
+- Think in terms of objects when coding
+    - For example, look around you. What is a logical way to hierachically create objects around you?
+        - Room object --> Contains everything
+        - Desk object
+        - Chair object
+        - Laptop object
+    - Different objects have different responsibilities, and responsibilities do not overlap
+        - Chair is for sitting
+        - Desk is for placing stuff
+    - Different objects know different things
+        - A chair knows it's max and min adjustable height
+        - A door knows it's angle of opening and closing

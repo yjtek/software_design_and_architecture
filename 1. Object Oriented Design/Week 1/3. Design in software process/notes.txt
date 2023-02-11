@@ -1,0 +1,30 @@
+- Product backlog --> Sprint backlog --> Iteration (sprint --> daily standup --> sprint) --> Potentially shippable product increment
+
+- It is better to do this planning rather than jumping into coding, because that leads to project failure
+    - i.e. if requirements are not thoroughly clarified, failure will happen
+    - e.g. when building a house, you need to know how many bedrooms, bathrooms etc. before building
+        - Should some rooms be bigger? Where should the rooms be? How many floors? What materials? etc
+
+- Once this is done, there are 2 outputs
+    - Conceptual mockups
+        - Initial thought for how requirements may be satisfied, and how components fit into one another
+            - i.e. mock up of the house and how the rooms are connected, WITHOUT technical DETAILS (wiring etc)
+        - Each component has a specific task
+            - e.g. Gym is for weightlifting, bedroom for sleeping, etc
+    - Technical diagrams
+        - Now that you know all the major components and their responsibilities, need to outline how these responsibilities are met
+        - Divide each component into subcomponents
+            - e.g. Gym should have a weight rack, floor, mirror
+                - Floor must acccomodate a lot of weight. How to reinforce the floor?
+
+- User stories are needed to define requirements
+    - AS A ______,
+    - I WANT TO ________,
+    - SO THAT _______
+    - e.g. As an online shopper, I want to add an item to my shopping cart, so that I can purchase it.
+
+- Objects are broadly categorised into 3 groups
+    - Entity: pure objects
+    - Boundary: stuff that sits between layers
+    - Control: stuff that controls other objects
+
