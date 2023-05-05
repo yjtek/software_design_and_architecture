@@ -1,0 +1,1 @@
+Review REST service constraints and principles. Look through a REST service architecture and show the important parts about RESTful services.
