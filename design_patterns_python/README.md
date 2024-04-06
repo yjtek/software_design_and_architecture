@@ -1,0 +1,1 @@
+The focus of this section is implementing all the design ideas from https://refactoring.guru/design-patterns in Python
