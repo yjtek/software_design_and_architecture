@@ -1,0 +1,41 @@
+- High level components
+    - Business requirements: what is the objective?
+        - Success Metrics
+    - Data
+        - Basic distributions of features. Class imbalance?
+            - If imbalanced, try subsampling/oversampling
+            - Or just reweight observations from the smaller class
+            - Problem is that reweighting/oversampling is really just fitting the model to a very small number of observations. No guarantees of generalisation, because correlations may be spurious
+        - Missing data? Is data missing at random? Is there sample bias/self selection we need to deal with in the data we see?
+        - What types of data are available?
+    - Model
+        - Type of problem
+            - Ranking?
+            - Classification?
+            - Regression?
+            - Time series?
+    - Training
+        - features
+            - variable selection?
+        - activation functions?
+        - loss functions?
+        - overfitting?
+            - regularisation
+                - Add a sum of weights (L1 norm) or sum of squared weights (L2 norm) with a parameter lambda to the loss function 
+                - l1 norm lets some weights shrink to 0, and so can be used for variable selection
+            - dropout
+        - exploding/vanishing gradients?
+            - batchnorm / layernorm
+            - regularisation (add a cost to weights in the loss function)
+    - Validation
+        - train-val split
+        - hyperparameter tuning
+    - Calibration
+        - Ensuring that your 0.2 probability happens 20% of the time IRL
+        - Isotonic regression
+    - Deployment
+    - Monitoring
+        - Metrics
+        - Concept drift
+        - Data drift
+    - Experimentation

@@ -17,16 +17,16 @@ This will look into a general approach to answering any system design interview 
             - Consistency
             - Security
 
-2. Define high level architecture. While this is intended as a comprehensive list, when you first discuss it, scope it to the minimum possible complexity to meet the requirements. Think of it as an MVP
+2. Define high level architecture to meet **functional** requirements. While this is intended as a comprehensive list, when you first discuss it, scope it to the minimum possible complexity to meet the requirements. Think of it as an MVP. 
     - Core functional layers:
-        - API/API Gateway Layer: Handles requests.
+        - API/API Gateway Layer: Handles requests. Deals with authentication/authorisation
         - Application Layer: Processes business logic
         - Database Layer: Stores and retrieves data. DB should also handle:
             - data replication & sharding
-            - Data Privacy & Compliance: Manage data encryption, masking, and compliance with regulations like GDPR or CCPA.
-        - Caching Layer: Reduces latency for frequent operations.
-        - Load Balancer: Distributes traffic across servers.
-        - Search & Indexing Layer: Optimizes data retrieval for search-heavy applications, often using specialized tools like Elasticsearch, Solr, or OpenSearch for full-text search, filtering, and ranking.
+            - Data Privacy & Compliance: Manage data encryption, masking, and compliance with regulations
+        - Caching Layer: Reduces latency for frequent operations
+        - Load Balancer: Distributes traffic across servers
+        - Search & Indexing Layer: Optimizes data retrieval for search-heavy applications, often using specialized tools like Elasticsearch, Solr, or OpenSearch for full-text search, filtering, and ranking
     
     - Performance/Reliability Layers: 
         - Monitoring & Logging: Tracks performance and issues (Prometheus/Grafana/OpenTelemetry for metrics, logs, and tracing)
@@ -38,6 +38,8 @@ This will look into a general approach to answering any system design interview 
         - Service Discovery Layer: Allows microservices to locate and communicate with each other dynamically, often implemented using tools like Consul, Zookeeper, or Kubernetes' internal DNS
         - Orchestration & Scheduling Layer: Manages workflows and scheduled tasks, such as with Airflow, Kubernetes CronJobs, or AWS Step Functions.
         - CDN (Content Delivery Network): Speeds up delivery of static and dynamic content to users by caching data geographically closer to them
+            - Push CDN: Push content from server to CDN before it is requested. More performant, but cold start and storage costs higher b/c you may store useless stuff in CDN
+            - Pull CDN: Pull content from server when it is requested AND not already in CDN. Less performant, but you store less things
 
     - User Experience & Engagement:
         - Authentication & Authorization Layer: Manages user identity, authentication (e.g., OAuth, JWT), and access control to ensure secure operations
@@ -54,9 +56,10 @@ This will look into a general approach to answering any system design interview 
         - Testing/QA: Ensures system quality via automated and manual testing frameworks.
         - Audit & Compliance Logging: Records tamper-proof logs for compliance and forensic analysis.
 
-3. Dive into specifics
+3. Dive into specifics to meet **non-functional** requirements
     - Database design
         - NoSQL / SQL / GraphDB
+            - How to shard a DB? **HASH RING**, to avoid incurring rehashing of every entry in the DB
         - Schema (table, primary key, indexes)
         - Algorithms (if any)
             - e.g. in recommender system, collaborative filtering
@@ -146,6 +149,17 @@ This will look into a general approach to answering any system design interview 
                                 }
                             }
                         ```
+            - REST vs Websocket/Polling/Long-Polling
+                - REST is 1 off, you send a request, you get a response
+                - Some use cases are a little more sophisticated (i.e. FB messenger). How would we do this?
+                    - Ask the server "do i have a new message" every second (i.e. **polling**)
+                        - This is wasteful, because you need to maintain the connection 
+                    - Ask the server "do i have a new message" once, and have the server maintain the request. When a new message comes in for me, the server returns. (i.e. **long polling**)
+                        - This is less wasteful, but you still need to maintain a connection somewhere. 
+                        - And it doesn't really help if traffic is "bursty". Like if you are 99% inactive, but 1% of the time you may get a flood of messages
+                    - Maintain an open 2-way connection with the server for the duration of a session (i.e. websocket)
+                        - This is ideal for things like FBM, but there is limit to how many connections a server can have
+                        - Websockets need to connect to specific ports via TCP protocol, and each port number is about 16 bits. This gives us around 65000 ports to work with
 
 4. Talk about Scale/Reliability/Other non-functional requirements
     - Latency:
